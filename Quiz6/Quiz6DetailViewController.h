@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Quiz6DetailViewController : UIViewController
+@class Tasks;
+@interface Quiz6DetailViewController : UIViewController <UITextFieldDelegate>
+{
+    __weak IBOutlet UITextField *name;
+    __weak IBOutlet UILabel *urgency;
+    __weak IBOutlet UISlider *slider;
+    __weak IBOutlet UIDatePicker *date;
+    
+}
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Tasks *task;
+- (IBAction)saveFields:(id)sender;
+- (IBAction)slider:(id)sender;
+@property (nonatomic, copy) void (^dismissBlock)(void);
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
 @end

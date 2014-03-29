@@ -30,6 +30,7 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +44,12 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    Tasks *task = [[Tasks alloc]init];
+    task.name = @"New Task";
+    task.dueDate = [[NSDate alloc]init];
+    task.urgency = 1;
+
+    [_objects insertObject:task atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -64,14 +70,41 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    Tasks *task = [_objects objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[task name]];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc]init];
+    [df setDateStyle:NSDateFormatterLongStyle];
+    [cell setTextColor:[UIColor colorWithRed:task.urgency/10.0 green:1.0-(task.urgency/10.4) blue:0 alpha:0.5]];
+    NSString *dateInText = [df stringFromDate:task.dueDate];
+    int urgencyInteger = (int)roundf(task.urgency);
+    NSString *urgencyText = [NSString stringWithFormat: @" (%u)",urgencyInteger];
+    NSString *new = [dateInText stringByAppendingString:urgencyText];
+
+    [[cell detailTextLabel] setText:new];
+    
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Tasks *task = [_objects objectAtIndex:[indexPath row]];
+    
+    Quiz6DetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Detail"];
+    [detailViewController setTask:task];
+    
+      [detailViewController setDismissBlock:^{ [[self tableView]reloadData];}];
+    [detailViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+
+    
+    [self presentViewController:detailViewController animated:YES completion:nil];
+    
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
+ 
     return YES;
 }
 
@@ -83,6 +116,10 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[self tableView]reloadData];
 }
 
 /*
@@ -101,13 +138,9 @@
 }
 */
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
-    }
+    
+        return NO;
 }
-
 @end

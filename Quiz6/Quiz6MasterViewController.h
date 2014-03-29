@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Tasks.h"
 @interface Quiz6MasterViewController : UITableViewController
+
+@property (nonatomic)Tasks *task;
 
 @end

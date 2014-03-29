@@ -22,6 +22,7 @@
 		63E0D6D218E5B81C00FB8961 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E0D6B118E5B81B00FB8961 /* UIKit.framework */; };
 		63E0D6DA18E5B81C00FB8961 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63E0D6D818E5B81C00FB8961 /* InfoPlist.strings */; };
 		63E0D6DC18E5B81C00FB8961 /* Quiz6Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0D6DB18E5B81C00FB8961 /* Quiz6Tests.m */; };
+		63E0D6E718E5CB7D00FB8961 /* Tasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0D6E618E5CB7D00FB8961 /* Tasks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		63E0D6D718E5B81C00FB8961 /* Quiz6Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quiz6Tests-Info.plist"; sourceTree = "<group>"; };
 		63E0D6D918E5B81C00FB8961 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		63E0D6DB18E5B81C00FB8961 /* Quiz6Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quiz6Tests.m; sourceTree = "<group>"; };
+		63E0D6E518E5CB7D00FB8961 /* Tasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tasks.h; sourceTree = "<group>"; };
+		63E0D6E618E5CB7D00FB8961 /* Tasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tasks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 		63E0D6B318E5B81B00FB8961 /* Quiz6 */ = {
 			isa = PBXGroup;
 			children = (
+				63E0D6E518E5CB7D00FB8961 /* Tasks.h */,
+				63E0D6E618E5CB7D00FB8961 /* Tasks.m */,
 				63E0D6BC18E5B81C00FB8961 /* Quiz6AppDelegate.h */,
 				63E0D6BD18E5B81C00FB8961 /* Quiz6AppDelegate.m */,
 				63E0D6BF18E5B81C00FB8961 /* Main.storyboard */,
@@ -258,6 +263,7 @@
 				63E0D6C418E5B81C00FB8961 /* Quiz6MasterViewController.m in Sources */,
 				63E0D6BE18E5B81C00FB8961 /* Quiz6AppDelegate.m in Sources */,
 				63E0D6BA18E5B81C00FB8961 /* main.m in Sources */,
+				63E0D6E718E5CB7D00FB8961 /* Tasks.m in Sources */,
 				63E0D6C718E5B81C00FB8961 /* Quiz6DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
